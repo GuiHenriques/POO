@@ -1,13 +1,6 @@
 # linhas, colunas = [int(x) for x in input().split()]
 linha, colunas = 5, 6
-# matriz = [[i for i in input().split()] for i in range(linhas)]
-matriz = [
-    ["1", "X", "1", "1", "0", "1"],
-    ["0", "0", "1", "1", "0", "1"],
-    ["0", "1", "1", "1", "0", "1"],
-    ["0", "0", "0", "1", "0", "1"],
-    ["1", "1", "0", "0", "0", "1"],
-]
+matriz = [[i for i in input().split()] for i in range(linhas)]
 
 caminho = str()
 direction = "S"
