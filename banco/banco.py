@@ -1,3 +1,4 @@
+from math import inf
 from ficha_bancaria import *
 
 class Banco:
@@ -31,18 +32,29 @@ class Banco:
             
     def saque(self, numero_conta, valor):
         ''' Realiza um saque numa conta '''
-        
-        return None
+        if numero_conta in self.__fichario:
+            self.__fichario[numero_conta].debite(valor)
+            return True
+        else:
+            return False       
     
     def transferencia(self, nct_origem, nct_destino, valor):
+        
         ''' Realiza transferência entre duas contas '''
         
-        return None
+        if nct_origem in self.__fichario and nct_destino in self.__fichario:
+            self.__fichario[nct_origem].debite(valor)
+            self.__fichario[nct_destino].credite(valor)
+            return True
+        else:
+            return False         
 
     def saldo(self, numero_conta):       
         ''' Obtém o saldo de uma conta '''
+        if numero_conta in self.__fichario:
+            return self.__fichario[numero_conta].get_saldo()
+
         
-        return None
  
     def encerra_conta(self, numero_conta):
         ''' Encerra uma conta '''
@@ -56,7 +68,7 @@ class Banco:
     def conta_maior_saldo(self):
         '''Obtém o nº da conta do cliente com maior saldo'''
         
-        maior_saldo = -math.inf
+        maior_saldo = -inf
         nct = 0
         for ficha in self.__fichario.values():
             if ficha.get_saldo() > maior_saldo:
@@ -66,8 +78,9 @@ class Banco:
 
     def saldo_medio(self):
         '''Cálcula o saldo médio dos correntistas'''
-        
-        return None      
+        soma = sum([ficha.get_saldo() for ficha in self.__fichario.values()])
+        media = soma / len(self.__fichario)
+        return media      
     
     def cpfs_duplicados(self):
         ''' Obtém os cpfs duplicados (em mais de uma conta) '''
