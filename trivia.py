@@ -1,16 +1,19 @@
-questions = {"When the first-ever soccer World Cup happend? ": "1930",
-             "Which country won the first-ever soccer World Cup in 1930? ": "Uruguay",
-             "Which country has won the world cup five times? ": "Brazil",
+questions = {"When the first-ever soccer World Cup happend? ": "C",
+             "Which country won the first-ever soccer World Cup? ": "C",
+             "Which country has won the world cup five times? ": "B",
              }
 
-for question in questions:
+options = [["A. 1926", "B. 1928", "C. 1930", "D. 1934"],
+           ["A. England", "B. Italy", "C. Uruguay", "D. Brazil"],
+           ["A. Argentina", "B. Brazil", "C. Germany", "D. France"],]
+
+for key, question in enumerate(questions):
     score = 0
-    answer = input(question).capitalize()
+    print(question)
+    for option in options[key]:
+        print(option)
+    answer = input("Answer: ").upper()
     
     if answer != questions[question]:
-        print("Wrong answer") 
         score += 1
-    else:
-        print("Rigth answer") 
 print(f"Score: {score}")
-
